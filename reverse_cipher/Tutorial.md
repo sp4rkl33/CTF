@@ -5,13 +5,12 @@ https://play.picoctf.org/practice/challenge/79?category=3&page=6
 We have recovered a binary and a text file. Can you reverse the flag.
 
 # Tutorial:
-The text file give us a encoded ascii_text flag like this: <br>
+  - The text file give us a encoded ascii_text flag like this: <br>
 ```
 picoCTF{w1{1wq84fb<1>49}
 ```
-
-Open the binary file with ida or ghidra (I'll use ida). <br>
-Decompile the file give us the main function like this:
+  - Open the binary file with ida or ghidra (I'll use ida). <br>
+  - Decompile the file give us the main function like this:
 ``` C
 int __fastcall main(int argc, const char **argv, const char **envp)
 {
@@ -53,4 +52,24 @@ int __fastcall main(int argc, const char **argv, const char **envp)
   return fclose(stream);
 }
 ```
+  - Based on the code we can easily see the program only encode 22 characters in 2 bracket {} so we gonna write a decrypt script based on the second for loop <br>
+```c++
+#include <bits/stdc++.h>
 
+using namespace std;
+
+int main(){
+    freopen("rev_this", "r", stdin);
+    char c[24]; for (auto &it:c) cin >> it;
+    for (int i = 8; i <= 22; i++){
+        if (i & 1) c[i] += 2;
+        else c[i] -= 5;
+    }
+
+    for (int i = 0; i < 24; i++) cout << c[i];
+    cout << '\n';
+    return 0;
+}
+```
+  - just run this script and we'll get the flag: 
+  - flag: picoCTF{REACTED}
