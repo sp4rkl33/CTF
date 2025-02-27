@@ -1,6 +1,8 @@
 # Problem:
 https://play.picoctf.org/practice/challenge/79?category=3&page=6
 
+# Difficuty: HARD
+
 # Description:
 We have recovered a binary and a text file. Can you reverse the flag.
 
