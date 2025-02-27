@@ -52,7 +52,7 @@ int __fastcall main(int argc, const char **argv, const char **envp)
   return fclose(stream);
 }
 ```
-  - Based on the code we can easily see the program only encode 22 characters in 2 bracket {} so we gonna write a decrypt script based on the second for loop <br>
+  - Based on the code we can easily see the program only encode 15 characters in 2 bracket {} so we gonna write a decrypt script based on the second for loop <br>
 ```c++
 #include <bits/stdc++.h>
 
