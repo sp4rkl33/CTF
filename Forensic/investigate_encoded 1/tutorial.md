@@ -4,7 +4,7 @@ https://play.picoctf.org/practice/challenge/47?category=4&page=5
 # Tag: 
 Hard, Forensic
 
-# Tutorial:
+# Tutorial: (Still updating sowwy :<)
   - Decompile the file with IDA or Ghidra (I'll use IDA) and step inside main function:
 ```C
 int __fastcall main(int argc, const char **argv, const char **envp)
