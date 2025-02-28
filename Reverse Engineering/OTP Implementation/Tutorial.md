@@ -65,7 +65,7 @@ int __fastcall main(int argc, const char **argv, const char **envp)
   }
 }
 ```
-  - Look like the program is gonna recieve our input then encrypt it. Observing that at line 34 it compare out encrypt with some string.
+  - Look like the program is gonna recieve our input then encrypt it. Observing that at line 34 it compare out encrypted input with some string.
   - If we manage to reverse the string or brute-force it we can get the plain-key then just xor it with the content in the text file we'll get the flag.
   - Before write a decryption script we have some function to look out:
 ```C
