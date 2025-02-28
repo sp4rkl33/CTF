@@ -133,4 +133,7 @@ int main(){
 }
 ```
   - Run this script get the key then just XOR with the hex string in the txt file to get the flag.
-  - Flag: picoCTF{REACTED}
+  - Flag:
+```
+  picoCTF{REACTED}
+```
