@@ -5,6 +5,10 @@ https://play.picoctf.org/practice/challenge/92?category=3&page=6
 Yay reversing! Relevant files: [otp](https://jupiter.challenges.picoctf.org/static/a2a15755ba8be4b4dabf60f8f35ec44e/otp) [flag.txt](https://jupiter.challenges.picoctf.org/static/a2a15755ba8be4b4dabf60f8f35ec44e/flag.txt)
 
 # Tutorial:
+  - This is what we have in the text file:
+  ```
+  ffadccb05b5892418ff068dd9d42231e8caf8ebb289ea1873f0a474cabe7ce598db77bac9dfef1d7c2b5af3c35bf5844c082
+  ``` 
   - Decompile with IDA or Ghidra (i used IDA) we obtain the main function like this:
 ```C
 int __fastcall main(int argc, const char **argv, const char **envp)
