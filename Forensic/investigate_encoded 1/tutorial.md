@@ -7,9 +7,7 @@ Hard, Forensic
 # Tutorial: (Still updating sowwy :<)
   - Decompile the file with IDA or Ghidra (I'll use ghidra for this) and step inside main function:
 ```C
-undefined8 main(void)
-
-{
+undefined8 main(void){
   long lVar1;
   size_t sVar2;
   undefined4 local_18;
@@ -94,9 +92,7 @@ void encode(void){
 - Now we have 2 ways to solve this by brute-force the flag or reverse the encoded flag.
 - First let's take a look at isValid().
 ```C
-undefined8 isValid(char param_1)
-
-{
+undefined8 isValid(char param_1){
   undefined8 uVar1;
   
   if ((param_1 < 'a') || ('z' < param_1)) {
@@ -119,5 +115,17 @@ undefined8 isValid(char param_1)
 }
 ```
   - This gave us a very important information that our flag will only be alphabets and a space character and the maximum character we have is 65 included uppercases and lowercases.
-  - Checking the output file I know that it only 22 bytes 
+  - Checking the output file I know that it only 22 bytes but dose it match with the length of our input ?.
 ![alt text](https://github.com/sp4rkl33/CTF/blob/main/Forensic/investigate_encoded%201/Unti111tled.png)
+  - Let's test for somecases
+```terminal
+┌──(kali㉿kali)-[~/Downloads/investigate_encoded1]
+└─$ echo picoCTFthing > flag.txt 
+                                                                             
+┌──(kali㉿kali)-[~/Downloads/investigate_encoded1]
+└─$ chmod +x mystery
+                                                                             
+┌──(kali㉿kali)-[~/Downloads/investigate_encoded1]
+└─$ ./mystery 
+Error, I don't know why I crashed
+```
