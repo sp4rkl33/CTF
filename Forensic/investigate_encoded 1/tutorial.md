@@ -5,87 +5,118 @@ https://play.picoctf.org/practice/challenge/47?category=4&page=5
 Hard, Forensic
 
 # Tutorial: (Still updating sowwy :<)
-  - Decompile the file with IDA or Ghidra (I'll use IDA) and step inside main function:
+  - Decompile the file with IDA or Ghidra (I'll use ghidra for this) and step inside main function:
 ```C
-int __fastcall main(int argc, const char **argv, const char **envp)
-{
-  FILE *v3; // rdi
-  int v5; // [rsp+10h] [rbp-10h] BYREF
-  int v6; // [rsp+14h] [rbp-Ch]
-  FILE *stream; // [rsp+18h] [rbp-8h]
+undefined8 main(void)
 
-  stream = fopen("flag.txt", "r");
-  if ( !stream )
-  {
-    fwrite("./flag.txt not found\n", 1uLL, 21uLL, stderr);
+{
+  long lVar1;
+  size_t sVar2;
+  undefined4 local_18;
+  int local_14;
+  FILE *local_10;
+  
+  local_10 = fopen("flag.txt","r");
+  if (local_10 == (FILE *)0x0) {
+    fwrite("./flag.txt not found\n",1,0x15,stderr);
+                    /* WARNING: Subroutine does not return */
     exit(1);
   }
   flag_size = 0;
-  fseek(stream, 0LL, 2);
-  flag_size = ftell(stream);
-  fseek(stream, 0LL, 0);
-  if ( flag_size > 65534 )
-  {
-    fwrite("Error, file bigger that 65535\n", 1uLL, 0x1EuLL, stderr);
+  fseek(local_10,0,2);
+  lVar1 = ftell(local_10);
+  flag_size = (int)lVar1;
+  fseek(local_10,0,0);
+  if (0xfffe < flag_size) {
+    fwrite("Error, file bigger that 65535\n",1,0x1e,stderr);
+                    /* WARNING: Subroutine does not return */
     exit(1);
   }
-  flag = malloc(flag_size);
-  v6 = fread(flag, 1uLL, flag_size, stream);
-  if ( v6 <= 0 )
+  flag = malloc((long)flag_size);
+  sVar2 = fread(flag,1,(long)flag_size,local_10);
+  local_14 = (int)sVar2;
+  if (local_14 < 1) {
+                    /* WARNING: Subroutine does not return */
     exit(0);
-  v5 = 0;
-  flag_index = (__int64)&v5;
-  output = fopen("output", "w");
+  }
+  local_18 = 0;
+  flag_index = &local_18;
+  output = fopen("output","w");
   buffChar = 0;
   remain = 7;
-  v3 = stream;
-  fclose(stream);
-  encode(v3);
+  fclose(local_10);
+  encode();
   fclose(output);
-  fwrite("I'm Done, check ./output\n", 1uLL, 0x19uLL, stderr);
+  fwrite("I\'m Done, check ./output\n",1,0x19,stderr);
   return 0;
 }
 ```
   - At first glance the program recieve the flag then it encrypt the flag and store it into output file
   - Let's step into encode():
 ```C
-__int64 encode()
-{
-  __int64 result; // rax
-  unsigned int Value; // [rsp+0h] [rbp-10h]
-  int v2; // [rsp+4h] [rbp-Ch]
-  unsigned int v3; // [rsp+8h] [rbp-8h]
-  char v4; // [rsp+Fh] [rbp-1h]
-  char v5; // [rsp+Fh] [rbp-1h]
-
-  while ( *(_DWORD *)flag_index < flag_size )
-  {
-    v4 = *((_BYTE *)flag + *(int *)flag_index);
-    if ( (unsigned __int8)isValid((unsigned int)v4) != 1 )
-    {
-      fwrite("Error, I don't know why I crashed\n", 1uLL, 0x22uLL, stderr);
-      exit(1);
+void encode(void){
+  char cVar1;
+  char cVar2;
+  int iVar3;
+  undefined4 uVar4;
+  int local_10;
+  char local_9;
+  
+  while( true ) {
+    if (flag_size <= *flag_index) {
+      while (remain != 7) {
+        save(0);
+      }
+      return;
     }
-    v5 = lower((unsigned int)v4);
-    if ( v5 == 32 )
-      v5 = 123;
-    v3 = dword_DC4[2 * v5 - 194];
-    v2 = *((_DWORD *)&matrix + 2 * v5 - 194) + v3;
-    while ( (int)v3 < v2 )
-    {
-      Value = getValue(v3);
-      save(Value);
-      ++v3;
+    cVar1 = *(char *)(*flag_index + flag);
+    cVar2 = isValid((int)cVar1);
+    if (cVar2 != '\x01') break;
+    local_9 = lower((int)cVar1);
+    if (local_9 == ' ') {
+      local_9 = '{';
     }
-    ++*(_DWORD *)flag_index;
+    local_10 = *(int *)(matrix + (long)(local_9 + -97) * 8 + 4);
+    iVar3 = local_10 + *(int *)(matrix + (long)(local_9 + -97) * 8);
+    for (; local_10 < iVar3; local_10 = local_10 + 1) {
+      uVar4 = getValue(local_10);
+      save(uVar4);
+    }
+    *flag_index = *flag_index + 1;
   }
-  while ( 1 )
-  {
-    result = (unsigned int)remain;
-    if ( remain == 7 )
-      break;
-    save(0LL);
-  }
-  return result;
+  fwrite("Error, I don\'t know why I crashed\n",1,0x22,stderr);
+                    /* WARNING: Subroutine does not return */
+  exit(1);
 }
 ```
+- Look through everything we have here. This program will recieve our flag in the text file then by some kind of encryption method it encrypt the flag then put it in a text file.
+- The output text file may not present in unicode format.
+- Now we have 2 ways to solve this by brute-force the flag or reverse the encoded flag.
+- First let's take a look at isValid().
+```C
+undefined8 isValid(char param_1)
+
+{
+  undefined8 uVar1;
+  
+  if ((param_1 < 'a') || ('z' < param_1)) {
+    if ((param_1 < 'A') || ('Z' < param_1)) {
+      if (param_1 == ' ') {
+        uVar1 = 1;
+      }
+      else {
+        uVar1 = 0;
+      }
+    }
+    else {
+      uVar1 = 1;
+    }
+  }
+  else {
+    uVar1 = 1;
+  }
+  return uVar1;
+}
+```
+  - This gave us a very important information that our flag will only be alphabets and a space character and the maximum character we have is 65 included uppercases and lowercases.
+  - Checking the output file I know that the output is only 
