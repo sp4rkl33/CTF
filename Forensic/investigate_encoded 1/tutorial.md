@@ -250,7 +250,7 @@ I'm Done, check ./output
 00000000: ae 80                                            ..
 ```
   - Bingo the bytes we got is 0xae80 but at we know earlier the program must form a byte then put into the output so it pad last 0x0 into the bytes.
-  - Conclusion it a subtitiution cipher with each character is a bit string. By that we just write a script to create our bit-alphabet.
+  - Conclusion: It's a subtitiution cipher with each character is a bit string. By that we just write a script to create our bit-alphabet.
   - Before writing a script let's take a look at this part.
 ```C
     local_10 = *(int *)(matrix + (long)(local_9 + -97) * 8 + 4); //start
