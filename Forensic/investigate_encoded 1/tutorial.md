@@ -1,10 +1,13 @@
 # Problem:
 https://play.picoctf.org/practice/challenge/47?category=4&page=5
 
+#Decription:
+We have recovered a [binary](https://jupiter.challenges.picoctf.org/static/e3904a8bf9fc321ffbe9360271067ecd/mystery) and 1 file: [image01](https://jupiter.challenges.picoctf.org/static/e3904a8bf9fc321ffbe9360271067ecd/output). See what you can make of it. NOTE: The flag is not in the normal picoCTF{XXX} format.
+
 # Tag: 
 Hard, Forensic
 
-# Tutorial: (Still updating sowwy :<)
+# Tutorial: 
   - Decompile the file with IDA or Ghidra (I'll use ghidra for this) and step inside main function:
 ```C
 undefined8 main(void){
