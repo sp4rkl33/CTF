@@ -328,7 +328,7 @@ z: 11101110101000
 ```
   - Convert the content in the original output file to binary then match it with our bit-alphabet then summit.
   - My convert script
-```
+```python
 f = open('output', 'rb')
 
 enc = f.readline()
