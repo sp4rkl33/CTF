@@ -119,4 +119,5 @@ undefined8 isValid(char param_1)
 }
 ```
   - This gave us a very important information that our flag will only be alphabets and a space character and the maximum character we have is 65 included uppercases and lowercases.
-  - Checking the output file I know that the output is only 
+  - Checking the output file I know that it only 22 bytes 
+![alt text](https://github.com/sp4rkl33/CTF/blob/main/Forensic/investigate_encoded%201/Unti111tled.png)
