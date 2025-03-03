@@ -117,7 +117,7 @@ undefined8 isValid(char param_1){
 }
 ```
   - The program will only accept alphabet character and a space character.
-  - Checking the output file I know that it only 22 bytes but dose it match with the length of our input ?.
+  - Checking the output file I know that it only 22 bytes but does it match with the length of our input ?.
 ![alt text](https://github.com/sp4rkl33/CTF/blob/main/Forensic/investigate_encoded%201/Unti111tled.png)
   - Let's test for somecases
 ```terminal
