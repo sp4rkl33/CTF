@@ -52,7 +52,7 @@ undefined8 main(void){
   return 0;
 }
 ```
-  - At first glance the program recieve the flag then it encrypt the flag and store it into output file
+  - At first glance the program receive the flag then it encrypt the flag and store it into output file
   - Let's step into encode():
 ```C
 void encode(void){
