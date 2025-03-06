@@ -66,7 +66,7 @@ print("plain: ", decrypt_string(enc, m))
 ```
 emf57mgc51tp693dtt4g3h7f8ouwq3
 ```
-  - Let's put it into the server then get our flag:
+  - Let's put it into the server then get the flag:
 ```kali
 ┌──(kali㉿kali)-[~]
 └─$ nc mercury.picoctf.net 30568
@@ -74,5 +74,4 @@ Here is the alphabet: 0fkdwu6rp8zvsnlj3iytxmeh72ca9bg5o41q
 Here is the encrypted message: herfayo7oqxrz7jwxx15ie20p40u1i
 What is the plaintext message? emf57mgc51tp693dtt4g3h7f8ouwq3
 Congratulations! Here's the flag: {REACTED}
-```
 ```
