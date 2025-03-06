@@ -9,9 +9,9 @@ Check out my new, never-before-seen method of encryption! I totally invented it 
 ```
 V ^ secret_key ^ A ^ B ^ C ^ D ^ E
   - V is our flag
-  - A, B, C, D, E is 5 strings in random_keys array.
+  - A, B, C, D, E is 5 strings in random_strs array.
 ```
-  - We consider V is xor with a k-permutation of our random_strs() and a secret_key (this is a constanst)
+  - We consider V is xor with a k-permutation of our random_strs and a secret_key (this is a constanst)
   - So we just need to loop thourgh all k-permutation of keys with (1 <= k <= 5) and our time complexity is ~~ O(1)
   - After perfrom XOR though a partial permutation of those string then we gonna try to guess the secret_key by XOR it this chunk "picoCTF{"
   - I've written to try all possible cases and here is it:
