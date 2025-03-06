@@ -14,7 +14,7 @@ Here is the encrypted message: herfayo7oqxrz7jwxx15ie20p40u1i
 What is the plaintext message? ^C
 ```
 
-  - By looking at the name let's re-create our script to decrypt the following message:
+  - Let's re-create our script to decrypt the following message:
 ```python
 SQUARE_SIZE = 6
 
