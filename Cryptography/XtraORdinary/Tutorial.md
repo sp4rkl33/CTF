@@ -74,3 +74,7 @@ for i in permu:
 .
 .
 ```
+  - I've try to use b'Africa!A' but it seem not right so i guess that last 'A' is the key repeation so i changed it to b'Africa!' and got the right flag
+```
+  - flag: picoCTF{w41t_s[REACTED]}
+```
